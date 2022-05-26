@@ -1,4 +1,4 @@
-import com.github.javafaker.Faker;
+
 import dto.Product;
 import lombok.SneakyThrows;
 import okhttp3.ResponseBody;
@@ -14,10 +14,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ModifyProductTest extends AbstractTest{
-
-    Product product = null;
-    Faker faker = new Faker();
-    int id;
 
     @BeforeEach
     void setUp() {
@@ -36,10 +32,10 @@ public class ModifyProductTest extends AbstractTest{
         product.setPrice(200);
         Response<Product> response1 = productService.modifyProduct(product)
                 .execute();
-        System.out.println(product);
         id =  response1.body().getId();
         assertThat(response1.isSuccessful(), CoreMatchers.is(true));
         assertThat(response1.code(), equalTo(200));
+        assertThat(response1.body().getPrice(), equalTo(200));
     }
 
     @SneakyThrows

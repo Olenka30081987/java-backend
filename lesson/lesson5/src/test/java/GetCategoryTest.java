@@ -28,8 +28,5 @@ public class GetCategoryTest {
         assertThat(response.body().getTitle(), equalTo("Food"));
         response.body().getProducts().forEach(product ->
                 assertThat(product.getCategoryTitle(), equalTo("Food")));
-
-
     }
-
 }
